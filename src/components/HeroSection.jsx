@@ -17,8 +17,8 @@ const HeroSection = ({ selectedCarrera }) => {
         color: 'from-cyan-400 via-blue-500 to-purple-500'
       },
       historia: {
-        titulo: 'Profesorado de Historia',
-        subtitulo: 'Pedagogía y Análisis Crítico',
+        titulo: 'Profesorado de Educación Primaria e Inicial',
+        subtitulo: 'Cultura, comunicación y educación',
         descripcion: 'Proyectos de investigación histórica y didáctica',
         color: 'from-amber-400 via-orange-500 to-red-500'
       },
@@ -82,7 +82,7 @@ const HeroSection = ({ selectedCarrera }) => {
             </a>
 
             <a
-              href="https://biblioteca210.pythonanywhere.com/libros/"
+              href="https://biblioteca-210-insti.vercel.app/libros/"
               target="_blank"
               rel="noopener noreferrer"
               className="group px-8 py-4 rounded-full font-bold text-white text-lg bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 transition-all shadow-xl"

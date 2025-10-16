@@ -203,7 +203,7 @@ function App() {
               Galería
             </a>
             <a 
-              href="https://biblioteca210.pythonanywhere.com/libros/" 
+              href="https://biblioteca-210-insti.vercel.app/libros/" 
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-cyan-400 transition-colors text-sm font-semibold"
@@ -223,7 +223,7 @@ function App() {
             <p className="text-gray-500 text-xs">
               Desarrollado con{' '}
               <span className="text-red-500 animate-pulse">❤️</span>
-              {' '}por estudiantes de{' '}
+              {' '}por Catriel Cabrera estudiante de{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold">
                 Analista de Sistemas
               </span>

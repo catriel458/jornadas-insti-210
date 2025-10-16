@@ -14,7 +14,7 @@ const Navbar = ({ selectedCarrera, setSelectedCarrera }) => {
   const carreras = [
     { id: 'todas', nombre: 'Todas las Carreras', color: 'from-purple-400 to-pink-500' },
     { id: 'sistemas', nombre: 'Analista de Sistemas', color: 'from-cyan-400 to-blue-500' },
-    { id: 'historia', nombre: 'Prof. de Historia', color: 'from-amber-400 to-orange-500' },
+    { id: 'historia', nombre: 'Prof. de Educación Primaria e Inicial', color: 'from-amber-400 to-orange-500' },
     { id: 'geografia', nombre: 'Prof. de Geografía', color: 'from-green-400 to-emerald-500' },
     { id: 'politicas', nombre: 'Prof. de Ciencias Políticas', color: 'from-indigo-400 to-purple-500' }
   ];

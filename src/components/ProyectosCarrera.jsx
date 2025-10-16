@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Library, Monitor, BookOpen, Globe, Users, ExternalLink, Check, Star, FileText, Database, Workflow, Bug, Code2, ChevronLeft, ChevronRight, Info } from 'lucide-react';
+import { Library, Monitor, BookOpen, Globe, Users, ExternalLink, Check, Star, FileText, Database, Workflow, Bug, Code2, ChevronLeft, ChevronRight, Info, X, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
 const ProyectosCarrera = ({ selectedCarrera }) => {
   const [libros, setLibros] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [pdfModal, setPdfModal] = useState({ isOpen: false, url: '', title: '' });
+  const [videoModal, setVideoModal] = useState({ isOpen: false, url: '', title: '' });
 
   useEffect(() => {
     if (selectedCarrera === 'sistemas') {
-      fetch('https://biblioteca210.pythonanywhere.com/libros/')
+      fetch('https://biblioteca-210-insti.vercel.app/libros/')
         .then(res => res.json())
         .then(data => {
           setLibros(data.slice(0, 3));
@@ -17,6 +19,22 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
         .catch(() => setLoading(false));
     }
   }, [selectedCarrera]);
+
+  const openPdfModal = (url, title) => {
+    setPdfModal({ isOpen: true, url, title });
+  };
+
+  const closePdfModal = () => {
+    setPdfModal({ isOpen: false, url: '', title: '' });
+  };
+
+  const openVideoModal = (url, title) => {
+    setVideoModal({ isOpen: true, url, title });
+  };
+
+  const closeVideoModal = () => {
+    setVideoModal({ isOpen: false, url: '', title: '' });
+  };
 
   // Imágenes de la biblioteca con sus descripciones
   const imagesBiblioteca = [
@@ -117,7 +135,7 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
       carrera: 'sistemas',
       nombre: 'Biblioteca Digital 210',
       descripcion: 'Sistema completo de gestión bibliotecaria con catálogo digital, préstamos online y gestión de usuarios',
-      url: 'https://biblioteca210.pythonanywhere.com/libros/',
+      url: 'https://biblioteca-210-insti.vercel.app/libros/',
       icon: Library,
       color: 'from-cyan-400 to-blue-500',
       features: ['Catálogo Digital', 'Préstamos Online', 'Sistema de Sanciones', 'Panel Administrativo'],
@@ -137,14 +155,27 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
     },
     {
       carrera: 'historia',
-      nombre: 'Archivo Histórico Digital',
-      descripcion: 'Plataforma de digitalización y catalogación de documentos históricos locales',
-      url: '#',
+      nombre: 'ESI: Incomodar la(s) mirada(s)',
+      descripcion: 'Proyecto de ESI, cine, debates y fanzines que transversaliza la ESI en la formación docente inicial',
+      url: 'https://drive.google.com/file/d/1RNQGxZRLZT3YwTqNQPP9MwEHQQ9qbQlW/view',
+      videoUrl: '/videos/esi-incomodar-miradas.mp4',
       icon: BookOpen,
-      color: 'from-amber-400 to-orange-500',
-      features: ['Digitalización de Documentos', 'Línea de Tiempo Interactiva', 'Búsqueda por Época'],
-      tech: ['Documentación', 'Investigación', 'Archivo Digital'],
-      destacado: false
+      color: 'from-pink-400 to-rose-500',
+      features: ['Cine y Debates', 'Producción de Fanzines', 'ESI Transversal', 'Formación Docente'],
+      tech: ['2do y 3er año', 'Ed. Primaria e Inicial', 'Cultura y Comunicación', 'Psicología Social'],
+      destacado: true
+    },
+    {
+      carrera: 'historia',
+      nombre: 'Experiencias Pedagógicas en Ciencias Naturales',
+      descripcion: 'Proyectos de didáctica de las ciencias naturales con experimentos controlados, modelos escolares y talleres de extensión',
+      url: 'https://drive.google.com/drive/folders/1Xtri_CTS7vnpXxs7a_4aZPa9jMTaslRL',
+      pdfUrl: '/docs/jornadas-2025.pdf',
+      icon: Globe,
+      color: 'from-green-400 to-emerald-500',
+      features: ['Experimentos Controlados', 'Modelos de Rotación y Traslación', 'Taller Luz y Colores', 'Diseño de Posters Científicos'],
+      tech: ['Didáctica de Cs. Naturales', 'Ed. Primaria e Inicial', 'Método Científico', 'Extensión Universitaria'],
+      destacado: true
     },
     {
       carrera: 'geografia',
@@ -253,19 +284,45 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
                   </div>
 
                   {/* Botón */}
-                  <a
-                    href={proyecto.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative group/btn inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white overflow-hidden transition-all"
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-r ${proyecto.color}`}></div>
-                    <div className={`absolute inset-0 bg-gradient-to-l ${proyecto.color} opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500`}></div>
-                    <span className="relative flex items-center gap-2">
-                      Ver Proyecto
-                      <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-                    </span>
-                  </a>
+                  {proyecto.pdfUrl ? (
+                    <button
+                      onClick={() => openPdfModal(proyecto.pdfUrl, proyecto.nombre)}
+                      className="relative group/btn inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white overflow-hidden transition-all"
+                    >
+                      <div className={`absolute inset-0 bg-gradient-to-r ${proyecto.color}`}></div>
+                      <div className={`absolute inset-0 bg-gradient-to-l ${proyecto.color} opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500`}></div>
+                      <span className="relative flex items-center gap-2">
+                        Ver Proyecto
+                        <FileText className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                      </span>
+                    </button>
+                  ) : proyecto.videoUrl ? (
+                    <button
+                      onClick={() => openVideoModal(proyecto.videoUrl, proyecto.nombre)}
+                      className="relative group/btn inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white overflow-hidden transition-all"
+                    >
+                      <div className={`absolute inset-0 bg-gradient-to-r ${proyecto.color}`}></div>
+                      <div className={`absolute inset-0 bg-gradient-to-l ${proyecto.color} opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500`}></div>
+                      <span className="relative flex items-center gap-2">
+                        Ver Proyecto
+                        <Play className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                      </span>
+                    </button>
+                  ) : (
+                    <a
+                      href={proyecto.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative group/btn inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white overflow-hidden transition-all"
+                    >
+                      <div className={`absolute inset-0 bg-gradient-to-r ${proyecto.color}`}></div>
+                      <div className={`absolute inset-0 bg-gradient-to-l ${proyecto.color} opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500`}></div>
+                      <span className="relative flex items-center gap-2">
+                        Ver Proyecto
+                        <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                      </span>
+                    </a>
+                  )}
                 </div>
               </div>
             );
@@ -438,7 +495,7 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
             {/* Botón al catálogo */}
             <div className="text-center">
               <a
-                href="https://biblioteca210.pythonanywhere.com/libros/"
+                href="https://biblioteca-210-insti.vercel.app/libros/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-cyan-500/50 hover:scale-105"
@@ -461,6 +518,73 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
           </div>
         )}
       </div>
+
+      {/* Modal de PDF */}
+      {pdfModal.isOpen && (
+        <div className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+          <div className="relative w-full h-full max-w-7xl max-h-[95vh] flex flex-col">
+            {/* Header del modal */}
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-2xl font-bold text-white">{pdfModal.title}</h3>
+              <button
+                onClick={closePdfModal}
+                className="w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
+              >
+                <X className="w-6 h-6 text-white" />
+              </button>
+            </div>
+
+            {/* Visor de PDF */}
+            <div className="flex-1 bg-gray-900/80 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+              <iframe
+                src={pdfModal.url}
+                className="w-full h-full"
+                title={pdfModal.title}
+              />
+            </div>
+
+            {/* Botón de descarga */}
+            <div className="mt-4 text-center">
+              <a
+                href={pdfModal.url}
+                download
+                className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-green-500/50 hover:scale-105"
+              >
+                <FileText className="w-5 h-5" />
+                Descargar Documento
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal de Video */}
+      {videoModal.isOpen && (
+        <div className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+          <div className="relative w-full h-full max-w-7xl max-h-[95vh] flex flex-col">
+            {/* Header del modal */}
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-2xl font-bold text-white">{videoModal.title}</h3>
+              <button
+                onClick={closeVideoModal}
+                className="w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
+              >
+                <X className="w-6 h-6 text-white" />
+              </button>
+            </div>
+
+            {/* Visor de Video */}
+            <div className="flex-1 bg-gray-900/80 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
+              <video
+                src={videoModal.url}
+                className="w-full h-full object-contain"
+                controls
+                autoPlay
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
