@@ -7,6 +7,7 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [pdfModal, setPdfModal] = useState({ isOpen: false, url: '', title: '' });
   const [videoModal, setVideoModal] = useState({ isOpen: false, url: '', title: '' });
+  const [podcastModal, setPodcastModal] = useState({ isOpen: false, title: '' });
 
   useEffect(() => {
     if (selectedCarrera === 'sistemas') {
@@ -34,6 +35,14 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
 
   const closeVideoModal = () => {
     setVideoModal({ isOpen: false, url: '', title: '' });
+  };
+
+  const openPodcastModal = (title) => {
+    setPodcastModal({ isOpen: true, title });
+  };
+
+  const closePodcastModal = () => {
+    setPodcastModal({ isOpen: false, title: '' });
   };
 
   // Imágenes de la biblioteca con sus descripciones
@@ -178,26 +187,16 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
       destacado: true
     },
     {
-      carrera: 'geografia',
-      nombre: 'Atlas Geográfico Interactivo',
-      descripcion: 'Mapas interactivos con datos geoespaciales de la región',
-      url: '#',
-      icon: Globe,
-      color: 'from-green-400 to-emerald-500',
-      features: ['Mapas Interactivos', 'Datos Geoespaciales', 'Análisis Territorial'],
-      tech: ['GIS', 'Cartografía', 'Análisis de Datos'],
-      destacado: false
-    },
-    {
-      carrera: 'politicas',
-      nombre: 'Portal de Participación Ciudadana',
-      descripcion: 'Plataforma educativa sobre democracia y participación política',
-      url: '#',
+      carrera: 'historia',
+      nombre: 'Nomeolvides - El Podcast del 210',
+      descripcion: '"Urdiendo lecturas, entramando escrituras" - Relatos propios y ficticios de experiencias con la lectura y escritura de los Talleres de Lectura, Escritura y Oralidad',
+      url: 'https://open.spotify.com/show/5gclt7ye0ujF7Z89b9VaPs',
+      showPodcastModal: true,
       icon: Users,
       color: 'from-indigo-400 to-purple-500',
-      features: ['Contenido Educativo', 'Recursos Didácticos', 'Análisis Político'],
-      tech: ['Educación', 'Ciencias Políticas', 'Ciudadanía'],
-      destacado: false
+      features: ['Relatos Estudiantiles', 'Experiencias de Lectura', 'Talleres de Escritura y Oralidad', 'Construcción de Memoria'],
+      tech: ['Profesorados Inicial y Primaria', 'Lectura y Escritura', 'Oralidad', 'Podcast en Spotify'],
+      destacado: true
     }
   ];
 
@@ -284,7 +283,19 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
                   </div>
 
                   {/* Botón */}
-                  {proyecto.pdfUrl ? (
+                  {proyecto.showPodcastModal ? (
+                    <button
+                      onClick={() => openPodcastModal(proyecto.nombre)}
+                      className="relative group/btn inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white overflow-hidden transition-all"
+                    >
+                      <div className={`absolute inset-0 bg-gradient-to-r ${proyecto.color}`}></div>
+                      <div className={`absolute inset-0 bg-gradient-to-l ${proyecto.color} opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500`}></div>
+                      <span className="relative flex items-center gap-2">
+                        Ver Información
+                        <Info className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                      </span>
+                    </button>
+                  ) : proyecto.pdfUrl ? (
                     <button
                       onClick={() => openPdfModal(proyecto.pdfUrl, proyecto.nombre)}
                       className="relative group/btn inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white overflow-hidden transition-all"
@@ -581,6 +592,62 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
                 controls
                 autoPlay
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal del Podcast Nomeolvides */}
+      {podcastModal.isOpen && (
+        <div className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 overflow-y-auto">
+          <div className="min-h-screen flex items-start justify-center p-4 py-8">
+            <div className="relative w-full max-w-6xl">
+              {/* Header del modal */}
+              <div className="flex items-center justify-between mb-6 sticky top-0 bg-black/80 backdrop-blur-xl p-4 rounded-xl z-10">
+                <h3 className="text-3xl font-bold text-white">{podcastModal.title}</h3>
+                <button
+                  onClick={closePodcastModal}
+                  className="w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all"
+                >
+                  <X className="w-6 h-6 text-white" />
+                </button>
+              </div>
+
+              {/* Contenedor de imágenes */}
+              <div className="space-y-6">
+                {/* Imagen 1 - Descripción completa */}
+                <div className="bg-white rounded-2xl shadow-2xl">
+                  <img
+                    src="/img/podcast-info.jpg"
+                    alt="Información del Podcast Nomeolvides"
+                    className="w-full h-auto rounded-2xl"
+                  />
+                </div>
+
+                {/* Imagen 2 - Logo del podcast */}
+                <div className="bg-white rounded-2xl shadow-2xl">
+                  <img
+                    src="/img/podcast-logo.jpg"
+                    alt="Logo del Podcast Nomeolvides"
+                    className="w-full h-auto rounded-2xl"
+                  />
+                </div>
+
+                {/* Botón a Spotify */}
+                <div className="text-center pb-8">
+                  <a
+                    href="https://open.spotify.com/show/5gclt7ye0ujF7Z89b9VaPs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-green-500/50 hover:scale-105"
+                  >
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                    Escuchar en Spotify
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
