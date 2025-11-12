@@ -10,6 +10,39 @@ const GaleriaSection = () => {
   const videoRef = useRef(null);
 
   const mediaItems = [
+
+      {
+      type: 'image',
+      title: 'Alumnos tercer año sistemas',
+      description: 'Jornadas Pedagógicas 2025',
+      src: '/img/j7.jpeg',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
+    {
+      type: 'image',
+      title: 'Jornadas Pedagógicas 2025',
+      description: 'Presentación Biblioteca',
+      src: '/img/j1.jpeg',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
+     {
+      type: 'image',
+      title: 'Jornadas Pedagógicas 2025 Abasto',
+      description: 'Presentación Abasto',
+      src: '/img/presentaciones-abasto.png',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
+     {
+      type: 'image',
+      title: 'Presentación Salud Mental',
+      description: 'Taller de acompañamiento en Salud Mental',
+      src: '/img/salud-mental.jpeg',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
     {
       type: 'image',
       title: 'Jornadas Pedagógicas 2024',
@@ -32,6 +65,48 @@ const GaleriaSection = () => {
       thumbnail: '/img/video-portada-biblio.jpg',  // ← Aquí va tu imagen de portada
       color: 'from-green-400 via-emerald-500 to-teal-500'
     },
+
+     {
+      type: 'image',
+      title: 'Presentación Hospital Romero',
+      description: 'Presentación alumnos sistemas 2do año',
+      src: '/img/j2.jpeg',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
+    {
+      type: 'image',
+      title: 'Taller SIMEF',
+      description: 'Taller práctico del SIMEF',
+      src: '/img/j3.jpeg',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
+      {
+      type: 'image',
+      title: 'Presentación Backend',
+      description: 'Presentación del equipo de Back de Sistemas',
+      src: '/img/j4.jpeg',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
+       {
+      type: 'image',
+      title: 'QA y Fronted',
+      description: 'Equipos de QA y Fronted saludando a la camara',
+      src: '/img/j5.jpeg',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
+       {
+      type: 'image',
+      title: 'Gestión de bienes patrimoniales',
+      description: 'Alumnos de segundo año de sistemas',
+      src: '/img/j6.jpeg',
+      color: 'from-cyan-400 via-blue-500 to-purple-500'
+    },
+
+
     {
       type: 'image',
       title: 'Taller de enseñanza en Ciencias Naturales',
@@ -52,6 +127,30 @@ const GaleriaSection = () => {
       title: 'Didáctica de las Ciencias Naturales',
       description: 'Profesorado de Educación Inicial y Primaria ',
       src: '/img/tallerbiologia3.jpg',
+      color: 'from-purple-400 via-pink-500 to-rose-500'
+    },
+
+    {
+      type: 'image',
+      title: 'Taller de Música',
+      description: 'Sede Abasto ',
+      src: '/img/j8.jpeg',
+      color: 'from-purple-400 via-pink-500 to-rose-500'
+    },
+
+    {
+      type: 'image',
+      title: 'Taller de Física',
+      description: 'Sede Abasto ',
+      src: '/img/j9.jpeg',
+      color: 'from-purple-400 via-pink-500 to-rose-500'
+    },
+
+     {
+      type: 'image',
+      title: 'Seguridad e Higiene',
+      description: 'Prevención y Seguridad en el trabajo',
+      src: '/img/j10.jpeg',
       color: 'from-purple-400 via-pink-500 to-rose-500'
     },
 

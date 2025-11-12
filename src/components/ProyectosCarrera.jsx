@@ -124,7 +124,7 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
     {
       nombre: 'Diagrama de Flujo - Biblioteca',
       descripcion: 'Diagramas y documentación del proyecto Biblioteca 210',
-      url: 'https://drive.google.com/drive/folders/1_UGk73dLYR4xElz6BcTm88Q2JsHBcFPL',
+      url: 'https://drive.google.com/file/d/1hmcD6v6HIv60zCSkAQeqJ-hvgniuwgWo/view?usp=sharing',
       icon: Workflow,
       color: 'from-pink-400 to-rose-500',
       tipo: 'Diagrama'
@@ -190,7 +190,7 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
       carrera: 'historia',
       nombre: 'Nomeolvides - El Podcast del 210',
       descripcion: '"Urdiendo lecturas, entramando escrituras" - Relatos propios y ficticios de experiencias con la lectura y escritura de los Talleres de Lectura, Escritura y Oralidad',
-      url: 'https://open.spotify.com/show/5gclt7ye0ujF7Z89b9VaPs',
+      url: 'https://open.spotify.com/show/51E3TdY2veQ7qrnk2EhSt1?si=VkrR1HuoTTCnCCsIwrXwwQ ',
       showPodcastModal: true,
       icon: Users,
       color: 'from-indigo-400 to-purple-500',
@@ -636,7 +636,7 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
                 {/* Botón a Spotify */}
                 <div className="text-center pb-8">
                   <a
-                    href="https://open.spotify.com/show/5gclt7ye0ujF7Z89b9VaPs"
+                    href="https://open.spotify.com/show/51E3TdY2veQ7qrnk2EhSt1?si=VkrR1HuoTTCnCCsIwrXwwQ "
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-green-500/50 hover:scale-105"
