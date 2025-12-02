@@ -155,7 +155,7 @@ const ProyectosCarrera = ({ selectedCarrera }) => {
       carrera: 'sistemas',
       nombre: 'Sistema SIMEF',
       descripcion: 'Sistema Integral de Gestión Educativa con seguimiento académico en tiempo real',
-      url: 'https://simef-back-ynfm.vercel.app/',
+      url: 'https://i.ibb.co/23q02SNW/simef.jpg',
       icon: Monitor,
       color: 'from-purple-400 to-pink-500',
       features: ['Gestión de Alumnos', 'Inscripción a Finales y Materias', 'Gestión de Usuarios', 'Sistema de Mail'],
